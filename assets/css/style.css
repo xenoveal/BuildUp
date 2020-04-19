@@ -5,6 +5,23 @@
   font-size: 400%;
   text-shadow: -2px 0 #BDACEA, 0 2px #BDACEA, 2px 0 #BDACEA, 0 -2px #BDACEA; }
 
+#hero h1:hover {
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+  font-size: 400%;
+  text-shadow: -2px 0 blueviolet, 0 2px blueviolet, 2px 0 blueviolet, 0 -2px blueviolet; }
+
+#hero h2 {
+  color: #BDACEA;
+  font-size: 150%;
+  text-shadow: -2px 0 blueviolet, 0 2px blueviolet, 2px 0 blueviolet, 0 -2px blueviolet; }
+
+#hero h2:hover {
+  color: white;
+  font-size: 150%;
+  text-shadow: -2px 0 #BDACEA, 0 2px #BDACEA, 2px 0 #BDACEA, 0 -2px #BDACEA; }
+
 body {
   font-size: large;
   font-family: Arial, Helvetica, sans-serif;
@@ -45,11 +62,25 @@ header {
   width: 100%;
   height: 429px;
   margin-top: 40px; }
-  #hero img {
-    border-radius: 25px;
+  #hero .row {
+    margin: 15px; }
+  #hero .mainimg img {
+    border-radius: 30px;
     width: 100%;
     height: auto; }
   #hero p {
     color: #BDACEA; }
+  #hero button {
+    border-color: black;
+    margin: 15px;
+    height: 50px;
+    width: 400px; }
+  #hero button:hover {
+    background-color: #BDACEA; }
+  #hero .preview {
+    margin-top: 100px; }
+    #hero .preview img {
+      width: 100%;
+      height: auto; }
 
 /*# sourceMappingURL=style.css.map */
