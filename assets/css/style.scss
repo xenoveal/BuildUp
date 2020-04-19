@@ -1,0 +1,71 @@
+$primarycolor : blueviolet;
+$secondarycolor : #BDACEA;
+$font-stack : Arial, Helvetica, sans-serif;
+
+%title{
+    display: flex;
+    flex-wrap: wrap;
+    color: $primarycolor;
+    font-size: 400%;
+    text-shadow: -2px 0 $secondarycolor, 0 2px $secondarycolor, 2px 0 $secondarycolor, 0 -2px $secondarycolor;
+}
+
+body{
+    font-size: large;
+    font-family: $font-stack;
+    background-image: url("../img/texture02.jpg");
+}
+
+header{
+    background-image: url("../img/texture01.jpg");
+    width: 100%;
+    height: 70px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-wrap: warp;
+}
+
+#logo{
+    background-image: url("../img/logo.jpg");
+    background-size: 100px 70px;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 70px;
+}
+
+#menu{
+    color:$primarycolor;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    a{
+        color: inherit;
+        text-decoration: none;
+    }
+    a:hover{
+        color : $secondarycolor;
+        text-decoration: none;
+    }
+}
+
+#hero{
+    width: 100%;
+    height: 429px;
+    margin-top: 40px;
+    img{
+        border-radius: 25px;
+        width: 100%;
+        height: auto;
+    }
+    h1{
+        @extend %title
+    }
+    p{
+        color: $secondarycolor;
+    }
+}
