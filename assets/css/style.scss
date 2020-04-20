@@ -41,6 +41,9 @@ header{
     width: 100%;
     height: 70px;
     color: $primarycolor;
+    position: sticky;
+    top: 0px;
+    z-index: 3;
 
     #menu{
         color:$primarycolor;
@@ -66,7 +69,7 @@ header{
     display: flex;
     justify-content: center;
     justify-items: center;
-    flex-wrap: warp;
+    flex-wrap: wrap;
 }
 
 #hero{
@@ -75,6 +78,12 @@ header{
     margin-top: 40px;
     .row{
         margin:15px;
+    }
+    #title{
+        margin-top: 100px;
+        div{
+            margin-top: 100px;
+        }
     }
     .mainimg{
         img{
@@ -135,6 +144,7 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center ;
+    margin-top: 20px;
     a{
         color:inherit;
         text-decoration: none;
