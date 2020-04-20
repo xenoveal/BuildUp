@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar sticky-top navbar-light">
+            <nav class="navbar navbar-light large">
                 <a class="navbar-brand" href="#">
                     <img src="assets/img/logo.jpg" width="70px" height="50px" class="d-inline-block align-top" alt="">
                 </a>
@@ -25,10 +25,70 @@
                     </form>
                 </div>
             </nav>
+
+            <nav class="navbar navbar-light small">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/img/logo.jpg" width="70px" height="50px" class="d-inline-block align-top" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                  <ul class="navbar-nav">
+                    <li>
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="content.html">Content</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="betatester.html">BetaTester</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user.html">User</a>
+                    </li>     
+                  </ul>
+                </div>  
+              </nav>
         </header>
 
+        <div class="sidebar btn-group-vertical">
+            <a href="#trending"><button type="button" class="btn btn-outline-dark">Trending</button></a>
+            <a href="#competition"><button type="button" class="btn btn-outline-dark">Competition</button></a>
+            <a href="#info"><button type="button" class="btn btn-outline-dark">Info</button></a>
+        </div>
+
+        
         <div class="container">
-            
+            <div id="trending">
+                <div class="card" style="width: 30%;">
+                    <img src="assets/img/trending1.png" class="card-img-top" alt="trending1">
+                    <div class="card-body">
+                        <h4>New Game Released! <br>Sky : Children of Light</h4>
+                        <p class="card-text">New great game published by The Sky Game, already launched in 2019. This is a good game with excellent graphic.</p>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 30%;">
+                    <img src="assets/img/trending2.png" class="card-img-top" alt="trending2">
+                    <div class="card-body">
+                        <h4>Sagittarius People Will Get More Money This Month</h4>
+                        <p class="card-text">Are you sagittarian? If yes, then this month will become 'gold' month for you! Start your new business now.</p>
+                    </div>
+                  </div>
+                  <div class="card" style="width: 30%;">
+                    <img src="assets/img/trending3.png" class="card-img-top" alt="trending3">
+                    <div class="card-body">
+                        <h4>Relation, The Most Important Thing to Start a New Business</h4>
+                        <p class="card-text">If you want to start a new business or start up, innovation maybe become very important to you. But, the most important thing isn't the innovation but relation!</p>
+                    </div>
+                  </div>
+            </div>
         </div>
 
 
