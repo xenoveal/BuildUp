@@ -9,7 +9,7 @@ $font-stack : Arial, Helvetica, sans-serif;
         text-decoration: none;
     }
     a:hover{
-        color: $secondarycolor;
+        color: $primarycolor;
         text-decoration: none;
     }
 }
@@ -80,6 +80,10 @@ body{
     font-size: large;
     font-family: $font-stack;
     background-image: url("../img/texture02.jpg");
+    color: $primarycolor;
+    p{
+        color: $secondarycolor;
+    }
 }
 
 header{
@@ -241,5 +245,27 @@ footer{
     }
     div{
         @extend %cardsetting;
+    }
+}
+
+.regislogin{
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    text-align: left;
+    h2{
+        @extend %subtitle;
+        font-size: 200%;
+    }
+    h2:hover{
+        @extend %subtitlehover;
+        font-size: 200%;
+    }
+    button{
+        background-color: $primarycolor;
+    }
+    button:hover{
+        background-color: $secondarycolor;
+        color: white;
     }
 }

@@ -4,7 +4,7 @@ header #menu, footer, .sidebar {
     color: inherit;
     text-decoration: none; }
   header #menu a:hover, footer a:hover, .sidebar a:hover {
-    color: #BDACEA;
+    color: blueviolet;
     text-decoration: none; }
 
 .trending div, .competition div, .info div {
@@ -29,12 +29,12 @@ header #menu, footer, .sidebar {
   font-size: 400%;
   text-shadow: -2px 0 blueviolet, 0 2px blueviolet, 2px 0 blueviolet, 0 -2px blueviolet; }
 
-#hero h2 {
+#hero h2, .regislogin h2 {
   color: #BDACEA;
   font-size: 150%;
   text-shadow: -2px 0 blueviolet, 0 2px blueviolet, 2px 0 blueviolet, 0 -2px blueviolet; }
 
-#hero h2:hover {
+#hero h2:hover, .regislogin h2:hover {
   color: white;
   font-size: 150%;
   text-shadow: -2px 0 #BDACEA, 0 2px #BDACEA, 2px 0 #BDACEA, 0 -2px #BDACEA; }
@@ -60,7 +60,10 @@ header #menu, footer, .sidebar {
 body {
   font-size: large;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url("../img/texture02.jpg"); }
+  background-image: url("../img/texture02.jpg");
+  color: blueviolet; }
+  body p {
+    color: #BDACEA; }
 
 header {
   background-image: url("../img/texture01.jpg");
@@ -168,5 +171,20 @@ footer {
   color: white;
   text-shadow: 1px 1px 4px black;
   margin-top: 100px; }
+
+.regislogin {
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  text-align: left; }
+  .regislogin h2 {
+    font-size: 200%; }
+  .regislogin h2:hover {
+    font-size: 200%; }
+  .regislogin button {
+    background-color: blueviolet; }
+  .regislogin button:hover {
+    background-color: #BDACEA;
+    color: white; }
 
 /*# sourceMappingURL=style.css.map */
