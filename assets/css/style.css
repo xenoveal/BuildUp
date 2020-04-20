@@ -7,6 +7,14 @@ header #menu, footer, .sidebar {
     color: #BDACEA;
     text-decoration: none; }
 
+.trending div, .competition div, .info div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start; }
+  .trending div .card, .competition div .card, .info div .card {
+    margin: 30px; }
+
 #hero h1 {
   display: flex;
   flex-wrap: wrap;
@@ -36,7 +44,13 @@ header #menu, footer, .sidebar {
     display: none !important; }
 
   .small {
-    display: absolute !important; } }
+    display: absolute !important; }
+
+  .ss_img {
+    display: none; }
+
+  .sidebar {
+    display: none !important; } }
 @media (min-width: 1001px) {
   .small {
     display: none !important; }
@@ -114,22 +128,30 @@ header {
     text-shadow: -1px 0 blueviolet, 0 1px blueviolet, 1px 0 blueviolet, 0 -1px blueviolet; }
 
 footer {
-  height: 100px;
-  width: 100%;
   background-image: url("../img/texture01.jpg");
-  color: blueviolet;
+  color: #BDACEA;
   font-size: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 20px; }
+  footer h6 {
+    color: blueviolet; }
+  footer ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; }
   footer li {
     display: inline;
-    margin: 10px; }
+    margin-left: 5px; }
     footer li img {
       width: 30px;
       height: 30px;
       margin: 3px; }
+  footer .row div {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
 
 .sidebar {
   position: fixed;
@@ -141,13 +163,10 @@ footer {
     width: 120px;
     height: auto; }
 
-#trending {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start; }
-  #trending .card {
-    margin: 5px;
-    margin-top: 100px; }
+.trending h3, .competition h3, .info h3 {
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+  margin-top: 100px; }
 
 /*# sourceMappingURL=style.css.map */
