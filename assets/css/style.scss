@@ -14,6 +14,16 @@ $font-stack : Arial, Helvetica, sans-serif;
     }
 }
 
+%cardsetting{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    .card{
+        margin: 30px;
+    }
+}
+
 %title{
     display: flex;
     flex-wrap: wrap;
@@ -42,12 +52,23 @@ $font-stack : Arial, Helvetica, sans-serif;
     text-shadow: -2px 0 $secondarycolor, 0 2px $secondarycolor, 2px 0 $secondarycolor, 0 -2px $secondarycolor;
 }
 
+
 @media(max-width: 1000px){
     .large{
         display: none!important;
     }
     .small{
         display: absolute!important;
+    }
+    .ss_img{
+        display: none;
+    }
+    .sidebar{
+        display: none!important;
+    }
+
+    .largescreenvideo{
+        display: none!important;
     }
 }
 
@@ -58,12 +79,29 @@ $font-stack : Arial, Helvetica, sans-serif;
     .large{
         display: absolute!important;
     }
+    .smallscreenvideo{
+        display: none!important;
+    }
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 }
 
 body{
     font-size: large;
     font-family: $font-stack;
     background-image: url("../img/texture02.jpg");
+    color: $primarycolor;
+    p{
+        color: $secondarycolor;
+    }
 }
 
 header{
@@ -143,9 +181,9 @@ header{
     }
     .join button{
         border-color: black;
-        margin:15px;
+        margin: 10px;
         height: 50px;
-        width: 400px;
+        width: 100%;
     }
     button:hover{
         background-color: $secondarycolor;
@@ -170,22 +208,37 @@ header{
 
 footer{
     @extend %list;
-    height: 100px;
-    width: 100%;
+    a:hover{
+        color:$primarycolor;
+    }
     background-image: url("../img/texture01.jpg");
-    color: $primarycolor;
+    color: $secondarycolor;
     font-size: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center ;
     margin-top: 20px;
+    h6{
+        color: $primarycolor;
+    }
+    ul{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     li{
         display: inline;
-        margin: 10px;
+        margin-left: 5px;
         img{
             width: 30px;
             height: 30px;
             margin: 3px;
+        }
+    }
+    .row{
+        div{
+            margin-bottom: 10px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }
@@ -203,13 +256,48 @@ footer{
     }
 }
 
-#trending{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    .card{
-        margin: 5px;
+.trending, .competition, .info{
+    h3{
+        text-align: center;
+        color: white;
+        text-shadow: 1px 1px 4px black;
         margin-top: 100px;
+    }
+    div{
+        @extend %cardsetting;
+    }
+}
+
+.regislogin{
+    width: 100%;
+    margin-bottom: 100px;
+    text-align: left;
+    h2{
+        @extend %subtitle;
+        font-size: 200%;
+        margin-bottom: 10px;
+    }
+    h2:hover{
+        @extend %subtitlehover;
+        font-size: 200%;
+    }
+    button{
+        background-color: $primarycolor;
+        width: 50%;
+    }
+    button:hover{
+        background-color: $secondarycolor;
+        color: white;
+    }
+    #register, #login{
+        margin-top: 100px;
+    }
+}
+
+#video{
+    margin-top: 100px;
+    width: 90%;
+    .largescreenvideo, .smallscreenvideo{
+        display: block;
     }
 }

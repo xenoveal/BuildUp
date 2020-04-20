@@ -7,6 +7,14 @@ header #menu, footer, .sidebar {
     color: #BDACEA;
     text-decoration: none; }
 
+.trending div, .competition div, .info div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start; }
+  .trending div .card, .competition div .card, .info div .card {
+    margin: 30px; }
+
 #hero h1 {
   display: flex;
   flex-wrap: wrap;
@@ -21,12 +29,12 @@ header #menu, footer, .sidebar {
   font-size: 400%;
   text-shadow: -2px 0 blueviolet, 0 2px blueviolet, 2px 0 blueviolet, 0 -2px blueviolet; }
 
-#hero h2 {
+#hero h2, .regislogin h2 {
   color: #BDACEA;
   font-size: 150%;
   text-shadow: -2px 0 blueviolet, 0 2px blueviolet, 2px 0 blueviolet, 0 -2px blueviolet; }
 
-#hero h2:hover {
+#hero h2:hover, .regislogin h2:hover {
   color: white;
   font-size: 150%;
   text-shadow: -2px 0 #BDACEA, 0 2px #BDACEA, 2px 0 #BDACEA, 0 -2px #BDACEA; }
@@ -36,17 +44,38 @@ header #menu, footer, .sidebar {
     display: none !important; }
 
   .small {
-    display: absolute !important; } }
+    display: absolute !important; }
+
+  .ss_img {
+    display: none; }
+
+  .sidebar {
+    display: none !important; }
+
+  .largescreenvideo {
+    display: none !important; } }
 @media (min-width: 1001px) {
   .small {
     display: none !important; }
 
   .large {
-    display: absolute !important; } }
+    display: absolute !important; }
+
+  .smallscreenvideo {
+    display: none !important; } }
+html {
+  scroll-behavior: smooth; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto; } }
 body {
   font-size: large;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url("../img/texture02.jpg"); }
+  background-image: url("../img/texture02.jpg");
+  color: blueviolet; }
+  body p {
+    color: #BDACEA; }
 
 header {
   background-image: url("../img/texture01.jpg");
@@ -97,9 +126,9 @@ header {
     color: #BDACEA; }
   #hero .join button {
     border-color: black;
-    margin: 15px;
+    margin: 10px;
     height: 50px;
-    width: 400px; }
+    width: 100%; }
   #hero button:hover {
     background-color: #BDACEA; }
   #hero .preview {
@@ -114,22 +143,31 @@ header {
     text-shadow: -1px 0 blueviolet, 0 1px blueviolet, 1px 0 blueviolet, 0 -1px blueviolet; }
 
 footer {
-  height: 100px;
-  width: 100%;
   background-image: url("../img/texture01.jpg");
-  color: blueviolet;
+  color: #BDACEA;
   font-size: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 20px; }
+  footer a:hover {
+    color: blueviolet; }
+  footer h6 {
+    color: blueviolet; }
+  footer ul {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
   footer li {
     display: inline;
-    margin: 10px; }
+    margin-left: 5px; }
     footer li img {
       width: 30px;
       height: 30px;
       margin: 3px; }
+  footer .row div {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
 
 .sidebar {
   position: fixed;
@@ -141,13 +179,34 @@ footer {
     width: 120px;
     height: auto; }
 
-#trending {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start; }
-  #trending .card {
-    margin: 5px;
+.trending h3, .competition h3, .info h3 {
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+  margin-top: 100px; }
+
+.regislogin {
+  width: 100%;
+  margin-bottom: 100px;
+  text-align: left; }
+  .regislogin h2 {
+    font-size: 200%;
+    margin-bottom: 10px; }
+  .regislogin h2:hover {
+    font-size: 200%; }
+  .regislogin button {
+    background-color: blueviolet;
+    width: 50%; }
+  .regislogin button:hover {
+    background-color: #BDACEA;
+    color: white; }
+  .regislogin #register, .regislogin #login {
     margin-top: 100px; }
+
+#video {
+  margin-top: 100px;
+  width: 90%; }
+  #video .largescreenvideo, #video .smallscreenvideo {
+    display: block; }
 
 /*# sourceMappingURL=style.css.map */
