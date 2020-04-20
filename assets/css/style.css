@@ -4,7 +4,7 @@ header #menu, footer, .sidebar {
     color: inherit;
     text-decoration: none; }
   header #menu a:hover, footer a:hover, .sidebar a:hover {
-    color: blueviolet;
+    color: #BDACEA;
     text-decoration: none; }
 
 .trending div, .competition div, .info div {
@@ -50,13 +50,25 @@ header #menu, footer, .sidebar {
     display: none; }
 
   .sidebar {
+    display: none !important; }
+
+  .largescreenvideo {
     display: none !important; } }
 @media (min-width: 1001px) {
   .small {
     display: none !important; }
 
   .large {
-    display: absolute !important; } }
+    display: absolute !important; }
+
+  .smallscreenvideo {
+    display: none !important; } }
+html {
+  scroll-behavior: smooth; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto; } }
 body {
   font-size: large;
   font-family: Arial, Helvetica, sans-serif;
@@ -114,9 +126,9 @@ header {
     color: #BDACEA; }
   #hero .join button {
     border-color: black;
-    margin: 15px;
+    margin: 10px;
     height: 50px;
-    width: 400px; }
+    width: 100%; }
   #hero button:hover {
     background-color: #BDACEA; }
   #hero .preview {
@@ -135,13 +147,14 @@ footer {
   color: #BDACEA;
   font-size: 80%;
   margin-top: 20px; }
+  footer a:hover {
+    color: blueviolet; }
   footer h6 {
     color: blueviolet; }
   footer ul {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: wrap; }
+    justify-content: center; }
   footer li {
     display: inline;
     margin-left: 5px; }
@@ -174,17 +187,26 @@ footer {
 
 .regislogin {
   width: 100%;
-  margin-top: 100px;
   margin-bottom: 100px;
   text-align: left; }
   .regislogin h2 {
-    font-size: 200%; }
+    font-size: 200%;
+    margin-bottom: 10px; }
   .regislogin h2:hover {
     font-size: 200%; }
   .regislogin button {
-    background-color: blueviolet; }
+    background-color: blueviolet;
+    width: 50%; }
   .regislogin button:hover {
     background-color: #BDACEA;
     color: white; }
+  .regislogin #register, .regislogin #login {
+    margin-top: 100px; }
+
+#video {
+  margin-top: 100px;
+  width: 90%; }
+  #video .largescreenvideo, #video .smallscreenvideo {
+    display: block; }
 
 /*# sourceMappingURL=style.css.map */

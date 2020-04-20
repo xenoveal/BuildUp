@@ -9,7 +9,7 @@ $font-stack : Arial, Helvetica, sans-serif;
         text-decoration: none;
     }
     a:hover{
-        color: $primarycolor;
+        color: $secondarycolor;
         text-decoration: none;
     }
 }
@@ -52,6 +52,7 @@ $font-stack : Arial, Helvetica, sans-serif;
     text-shadow: -2px 0 $secondarycolor, 0 2px $secondarycolor, 2px 0 $secondarycolor, 0 -2px $secondarycolor;
 }
 
+
 @media(max-width: 1000px){
     .large{
         display: none!important;
@@ -65,6 +66,10 @@ $font-stack : Arial, Helvetica, sans-serif;
     .sidebar{
         display: none!important;
     }
+
+    .largescreenvideo{
+        display: none!important;
+    }
 }
 
 @media(min-width: 1001px){
@@ -74,6 +79,19 @@ $font-stack : Arial, Helvetica, sans-serif;
     .large{
         display: absolute!important;
     }
+    .smallscreenvideo{
+        display: none!important;
+    }
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 }
 
 body{
@@ -163,9 +181,9 @@ header{
     }
     .join button{
         border-color: black;
-        margin:15px;
+        margin: 10px;
         height: 50px;
-        width: 400px;
+        width: 100%;
     }
     button:hover{
         background-color: $secondarycolor;
@@ -190,6 +208,9 @@ header{
 
 footer{
     @extend %list;
+    a:hover{
+        color:$primarycolor;
+    }
     background-image: url("../img/texture01.jpg");
     color: $secondarycolor;
     font-size: 80%;
@@ -201,7 +222,6 @@ footer{
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
     }
     li{
         display: inline;
@@ -250,12 +270,12 @@ footer{
 
 .regislogin{
     width: 100%;
-    margin-top: 100px;
     margin-bottom: 100px;
     text-align: left;
     h2{
         @extend %subtitle;
         font-size: 200%;
+        margin-bottom: 10px;
     }
     h2:hover{
         @extend %subtitlehover;
@@ -263,9 +283,21 @@ footer{
     }
     button{
         background-color: $primarycolor;
+        width: 50%;
     }
     button:hover{
         background-color: $secondarycolor;
         color: white;
+    }
+    #register, #login{
+        margin-top: 100px;
+    }
+}
+
+#video{
+    margin-top: 100px;
+    width: 90%;
+    .largescreenvideo, .smallscreenvideo{
+        display: block;
     }
 }
