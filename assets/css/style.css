@@ -30,7 +30,22 @@ body {
 header {
   background-image: url("../img/texture01.jpg");
   width: 100%;
-  height: 70px; }
+  height: 70px;
+  color: blueviolet; }
+  header #menu {
+    color: blueviolet;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none; }
+    header #menu a {
+      color: inherit;
+      text-decoration: none; }
+    header #menu a:hover {
+      color: #BDACEA;
+      text-decoration: none; }
+    header #menu button:hover {
+      background-color: #BDACEA; }
 
 .container {
   display: flex;
@@ -38,29 +53,9 @@ header {
   justify-items: center;
   flex-wrap: warp; }
 
-#logo {
-  background-image: url("../img/logo.jpg");
-  background-size: 100px 70px;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 70px; }
-
-#menu {
-  color: blueviolet;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  list-style: none; }
-  #menu a {
-    color: inherit;
-    text-decoration: none; }
-  #menu a:hover {
-    color: #BDACEA;
-    text-decoration: none; }
-
 #hero {
   width: 100%;
-  height: 429px;
+  height: auto;
   margin-top: 40px; }
   #hero .row {
     margin: 15px; }
@@ -70,7 +65,7 @@ header {
     height: auto; }
   #hero p {
     color: #BDACEA; }
-  #hero button {
+  #hero .join button {
     border-color: black;
     margin: 15px;
     height: 50px;
@@ -82,5 +77,34 @@ header {
     #hero .preview img {
       width: 100%;
       height: auto; }
+  #hero .carousel img {
+    border-radius: 10px; }
+  #hero .carousel h5, #hero .carousel p {
+    color: white;
+    text-shadow: -1px 0 blueviolet, 0 1px blueviolet, 1px 0 blueviolet, 0 -1px blueviolet; }
+
+footer {
+  height: 100px;
+  width: 100%;
+  background-image: url("../img/texture01.jpg");
+  color: blueviolet;
+  list-style: none;
+  font-size: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  footer a {
+    color: inherit;
+    text-decoration: none; }
+  footer a:hover {
+    color: #BDACEA;
+    text-decoration: none; }
+  footer li {
+    display: inline;
+    margin: 10px; }
+    footer li img {
+      width: 30px;
+      height: 30px;
+      margin: 3px; }
 
 /*# sourceMappingURL=style.css.map */

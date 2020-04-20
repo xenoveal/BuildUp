@@ -40,6 +40,26 @@ header{
     background-image: url("../img/texture01.jpg");
     width: 100%;
     height: 70px;
+    color: $primarycolor;
+
+    #menu{
+        color:$primarycolor;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        list-style: none;
+        a{
+            color: inherit;
+            text-decoration: none;
+        }
+        a:hover{
+            color : $secondarycolor;
+            text-decoration: none;
+        }
+        button:hover{
+            background-color: $secondarycolor;
+        }
+    }
 }
 
 .container{
@@ -49,33 +69,9 @@ header{
     flex-wrap: warp;
 }
 
-#logo{
-    background-image: url("../img/logo.jpg");
-    background-size: 100px 70px;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 70px;
-}
-
-#menu{
-    color:$primarycolor;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
-    a{
-        color: inherit;
-        text-decoration: none;
-    }
-    a:hover{
-        color : $secondarycolor;
-        text-decoration: none;
-    }
-}
-
 #hero{
     width: 100%;
-    height: 429px;
+    height: auto;
     margin-top: 40px;
     .row{
         margin:15px;
@@ -102,7 +98,7 @@ header{
     p{
         color: $secondarycolor;
     }
-    button{
+    .join button{
         border-color: black;
         margin:15px;
         height: 50px;
@@ -116,6 +112,44 @@ header{
         img{
             width: 100%;
             height: auto;
+        }
+    }
+    .carousel{
+        img{
+            border-radius: 10px;            
+        }
+        h5, p{
+            color: white;
+            text-shadow: -1px 0 $primarycolor, 0 1px $primarycolor, 1px 0 $primarycolor, 0 -1px $primarycolor;
+        }
+    }
+}
+
+footer{
+    height: 100px;
+    width: 100%;
+    background-image: url("../img/texture01.jpg");
+    color: $primarycolor;
+    list-style: none;
+    font-size: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    a{
+        color:inherit;
+        text-decoration: none;
+    }
+    a:hover{
+        color: $secondarycolor;
+        text-decoration: none;
+    }
+    li{
+        display: inline;
+        margin: 10px;
+        img{
+            width: 30px;
+            height: 30px;
+            margin: 3px;
         }
     }
 }
