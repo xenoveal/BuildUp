@@ -295,9 +295,49 @@ footer{
 }
 
 #video{
-    margin-top: 100px;
+    margin-top: 80px;
     width: 90%;
     .largescreenvideo, .smallscreenvideo{
         display: block;
     }
+    h2{
+        margin-top: 50px;
+        @extend %subtitle;
+    }
+    h1{
+        @extend %title;
+    }
+    h1:hover{
+        @extend %titlehover;
+    }
 }
+
+#why{
+    margin-top: 50px;
+    @extend %list;
+    a{
+        color: $primarycolor;
+    }
+    a::before{
+        content: "--> ";
+    }
+    .row{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+
+    .join{
+        button{
+            border-color: black;
+            background-color: $primarycolor;
+            width: 70%;
+            margin-top: 20px;
+        }
+        button:hover{
+            background-color: $secondarycolor;
+        }
+    }
+}
+

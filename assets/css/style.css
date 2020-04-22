@@ -1,9 +1,9 @@
-header #menu, footer, .sidebar {
+header #menu, footer, .sidebar, #why {
   list-style: none; }
-  header #menu a, footer a, .sidebar a {
+  header #menu a, footer a, .sidebar a, #why a {
     color: inherit;
     text-decoration: none; }
-  header #menu a:hover, footer a:hover, .sidebar a:hover {
+  header #menu a:hover, footer a:hover, .sidebar a:hover, #why a:hover {
     color: #BDACEA;
     text-decoration: none; }
 
@@ -15,21 +15,21 @@ header #menu, footer, .sidebar {
   .trending div .card, .competition div .card, .info div .card {
     margin: 30px; }
 
-#hero h1 {
+#hero h1, #video h1 {
   display: flex;
   flex-wrap: wrap;
   color: blueviolet;
   font-size: 400%;
   text-shadow: -2px 0 #BDACEA, 0 2px #BDACEA, 2px 0 #BDACEA, 0 -2px #BDACEA; }
 
-#hero h1:hover {
+#hero h1:hover, #video h1:hover {
   display: flex;
   flex-wrap: wrap;
   color: white;
   font-size: 400%;
   text-shadow: -2px 0 blueviolet, 0 2px blueviolet, 2px 0 blueviolet, 0 -2px blueviolet; }
 
-#hero h2, .regislogin h2 {
+#hero h2, .regislogin h2, #video h2 {
   color: #BDACEA;
   font-size: 150%;
   text-shadow: -2px 0 blueviolet, 0 2px blueviolet, 2px 0 blueviolet, 0 -2px blueviolet; }
@@ -204,9 +204,30 @@ footer {
     margin-top: 100px; }
 
 #video {
-  margin-top: 100px;
+  margin-top: 80px;
   width: 90%; }
   #video .largescreenvideo, #video .smallscreenvideo {
     display: block; }
+  #video h2 {
+    margin-top: 50px; }
+
+#why {
+  margin-top: 50px; }
+  #why a {
+    color: blueviolet; }
+  #why a::before {
+    content: "--> "; }
+  #why .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px; }
+  #why .join button {
+    border-color: black;
+    background-color: blueviolet;
+    width: 70%;
+    margin-top: 20px; }
+  #why .join button:hover {
+    background-color: #BDACEA; }
 
 /*# sourceMappingURL=style.css.map */
