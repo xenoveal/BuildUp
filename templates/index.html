@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block section %}
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-4 value-inner">
+        <div class="row value-title">
+            <h1>Your Best Value Proporsition</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="row">
+            <button class="free_trial">Start free trial</button>
+            <button class="learn_more">Learn More</button>
+        </div>
+    </div>
+    <div class="col-lg-4 value-inner">
+        <img src="{{ url_for('static',filename='img/value_image.png') }}" alt="our value">
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+{% endblock %}

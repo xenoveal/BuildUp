@@ -1,0 +1,103 @@
+body {
+  background-color: white;
+  color: black; }
+
+nav .web_nav .row {
+  height: 64px;
+  border-bottom: 2px solid #d4d4d4; }
+  nav .web_nav .row a {
+    color: black; }
+  nav .web_nav .row a:hover {
+    text-decoration: none;
+    color: #838383; }
+  nav .web_nav .row .left, nav .web_nav .row .right {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; }
+    nav .web_nav .row .left .logo, nav .web_nav .row .right .logo {
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 33px;
+      /* identical to box height */
+      text-transform: capitalize; }
+    nav .web_nav .row .left .logo:hover, nav .web_nav .row .right .logo:hover {
+      color: black; }
+    nav .web_nav .row .left .signin, nav .web_nav .row .right .signin {
+      background: none;
+      border: none;
+      color: black;
+      outline: none; }
+    nav .web_nav .row .left .signin:hover, nav .web_nav .row .right .signin:hover {
+      color: #838383; }
+    nav .web_nav .row .left .signup, nav .web_nav .row .right .signup {
+      width: 140px;
+      height: 40px;
+      background: #273774;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      color: white; }
+    nav .web_nav .row .left .signup:hover, nav .web_nav .row .right .signup:hover {
+      background-color: #5669b3; }
+nav #msg {
+  color: red;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px; }
+
+section {
+  height: 700px;
+  display: flex;
+  align-items: center; }
+  section .value-inner {
+    font-family: Roboto;
+    font-style: normal; }
+    section .value-inner .value-title h1 {
+      font-size: 56px;
+      line-height: 66px;
+      width: 399px;
+      height: 132px; }
+    section .value-inner .value-title p {
+      margin-top: 30px;
+      line-height: 28px;
+      font-size: 20px;
+      width: 422px;
+      height: 85px; }
+    section .value-inner .free_trial {
+      width: 233px;
+      height: 60px;
+      font-size: 18px;
+      line-height: 21px;
+      color: white;
+      border: none;
+      outline: none;
+      margin-top: 15px;
+      background: #273774;
+      border-radius: 5px; }
+    section .value-inner .free_trial:hover {
+      background-color: #5669b3; }
+    section .value-inner .learn_more {
+      width: 151px;
+      height: 60px;
+      background-color: white;
+      border: 1px solid #273774;
+      color: #273774;
+      outline: none;
+      margin-top: 15px;
+      margin-left: 30px;
+      border-radius: 5px;
+      font-size: 18px;
+      line-height: 21px; }
+    section .value-inner .learn_more:hover {
+      background-color: #d4d4d4; }
+
+/*# sourceMappingURL=style.css.map */
