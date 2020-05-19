@@ -53,7 +53,10 @@ def register():
     if(password==password2):
         new_user = User(username=username, password=password)
         db.session.add(new_user)
-        db.session.commit()
+        try:
+            db.session.commit()
+        except:
+            db.session.rollback()
     return redirect(url_for('.index'))
 
 @app.route("/logout")
