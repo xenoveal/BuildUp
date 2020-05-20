@@ -1,4 +1,3 @@
-var allowSubmit = false;
 $('#registerEmail').on('input', function(){
 	var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 	var is_email=re.test($('#registerEmail').val());
@@ -12,20 +11,21 @@ $('#registerEmail').on('input', function(){
 	}
 });
 
-$('#registerPass, #registerPass2').on('input', function(){
-	if(($('#registerPass').val().length > 7) && (/\d/.test($('#registerPass').val()))){
-		if($('#registerPass').val() != $('#registerPass2').val()){
-			$('#registerPass2').addClass('is-invalid');
-			$('#msg').html('Password didn\'t Match!');
-		}else{
-			$('#msg').html('');
-			$('#registerPass').toggleClass('is-invalid is-valid');
-			$('#registerPass2').toggleClass('is-invalid is-valid');
-			allowSubmit = true;
-		}
-	}else{
+$('#registerPass').on('input', function(){
+	if(!(($('#registerPass').val().length > 7) && (/\d/.test($('#registerPass').val())))){
 		$('#registerPass').addClass('is-invalid');
 		$('#msg').html('Password minimum 8 characters with numeric values');
+	}
+});
+
+$('#registerPass2').on('input', function(){
+	if($('#registerPass').val() != $('#registerPass2').val()){
+		$('#registerPass2').addClass('is-invalid');
+		$('#msg').html('Password didn\'t Match!');
+	}else{
+		$('#msg').html('');
+		$('#registerPass').toggleClass('is-invalid is-valid');
+		$('#registerPass2').toggleClass('is-invalid is-valid');
 	}
 });
 
