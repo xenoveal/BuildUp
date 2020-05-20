@@ -8,7 +8,12 @@
               <label for="registerEmail" class="col-sm-3 col-form-label">Email</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" id="registerEmail" placeholder="Email" name="registerEmail">
-                <span id="msg2"></span>  
+
+                {% if wrong %}
+                <span id="msg2" style="color: red; text-align: center;">Email already exist!</span>
+                {% else %}  
+                <span id="msg2"></span> 
+                {% endif %}
             </div>
             </div>
             <div class="form-group row">
@@ -33,8 +38,8 @@
                     <label class="form-check-label" for="agreePolicy">
                       Agree
                     </label>
-                  </div>
-                </div>
+                  </div> 
+                </div> 
               </div>
             
             <button type="submit" class="btn btn-primary" id="submit-register">Register</button>

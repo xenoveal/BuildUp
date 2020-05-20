@@ -1,16 +1,16 @@
-from flask import Flask, session, render_template, request, url_for, redirect
-from flask_session import Session
+from flask import Flask, session, render_template, request, url_for, redirect, session
 from authlib.integrations.flask_client import OAuth
 from models import *
 from hashPassword import *
 import time
+from datetime import timedelta
 
 app = Flask(__name__)
 
-# Configure session to use filesystem
-app.config["PERMANENT"] = True
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+# Configure session
+app.secret_key = "xenoveals123"
+app.config['SESSION_COOKIE_NAME'] = 'login-session'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
 
 # Set up database
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://fgaelkvcnxhqos:7784fabbd6c0316eb419e127eeb3e50ac6e5808fcc827204fe982cffe88b2a3c@ec2-52-44-55-63.compute-1.amazonaws.com:5432/d7s2do0pifj2qc"
@@ -31,14 +31,15 @@ google = oauth.register(
     client_kwargs={'scope': 'openid email profile'},
 )
 
-data = None
-
 @app.route("/")
 def index():
     title = "Home"
-    if(data == None):
+    try:
+        data = session['data']
+        return render_template("index.html", title=title, login=True, name=data['First Name'][0].capitalize()+data['First Name'][1:])
+    except:
         return render_template("index.html", title=title, login=False)
-    return render_template("index.html", title=title, login=True, name=data['First Name'][0].capitalize()+data['First Name'][1:])
+    
 
 @app.route("/google-login")
 def login_google():
@@ -52,14 +53,14 @@ def authorize():
     token = google.authorize_access_token()
     resp = google.get('userinfo')
     user_info = resp.json()
-    global data
-    data = {
+    session['data'] = {
         'Email' : user_info['email'],
         'First Name' : user_info['given_name'],
         'Last Name' : user_info['family_name']
-    }    
-    user = User.query.filter_by(username=data['Email']).first()
-    
+    }   
+    data = session['data']
+    user = User.query.filter_by(username=data['Email']).first()  
+    time.sleep(2) 
     # if user is new, add to database with default PASSWORD = admin1234
     if(user is None):
         new_user = User(username=data['Email'], password=hash_password('admin1234'), first_name=data['First Name'], last_name=data['Last Name'])
@@ -69,13 +70,12 @@ def authorize():
         except:
             db.session.rollback()
     else:
-        data = {
+        session['data'] = {
             'Email': user.username,
             'First Name': user.first_name,
             'Last Name': user.last_name
         } 
-
-    time.sleep(1)  
+    session.permanent = True  
     return redirect(url_for('.index'))
 
 @app.route("/login", methods=["POST", "GET"])
@@ -85,23 +85,23 @@ def login():
         username_fill = request.form.get("loginEmail")
         password_fill = request.form.get("loginPass")
         user = User.query.filter_by(username=username_fill).first()
-
+        time.sleep(2)
         if(not(user is None)):
-            if(verify_password(user.password, password_fill)):
-                global data 
-                data = {
+            if(verify_password(user.password, password_fill)): 
+                session['data'] = {
                     'Email': user.username,
                     'First Name' : user.first_name,
                     'Last Name' : user.last_name
                 }
-                time.sleep(1)
                 return redirect(url_for('.index'))
         return redirect(url_for('.login', wrong=True))
     else:
-        if(data!=None):
+        try:
+            data = session['data']
             return redirect(url_for('.index'))
-        wrong = request.args.get('wrong')
-        return render_template("login.html", title=title, wrong=wrong)
+        except:
+            wrong = request.args.get('wrong')
+            return render_template("login.html", title=title, wrong=wrong)
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
@@ -118,17 +118,20 @@ def register():
                 db.session.commit()
             except:
                 db.session.rollback()
-        time.sleep(1)
+                return redirect(url_for('.register', wrong=True))
         return redirect(url_for('.index'))
     else:
-        if(data!=None):
+        try:
+            data = session['data']
             return redirect(url_for('.index'))
-        return render_template("register.html", title=title)
+        except:
+            wrong = request.args.get('wrong')
+            return render_template("register.html", title=title, wrong=wrong)
 
 @app.route("/l1o1g1o1u1t")
 def logout():
-    global data
-    data = None
+    for key in list(session.keys()):
+        session.pop(key)
     time.sleep(1)
     return redirect(url_for('.index'))
 
