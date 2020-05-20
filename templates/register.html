@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block section %}
+<div class="row login-register">
+    <div class="col-lg-6 inner-login-register">
+        <form action="{{ url_for('register') }}" method="POST" id="register">         
+            <div class="form-group row">
+              <label for="registerEmail" class="col-sm-3 col-form-label">Email</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="registerEmail" placeholder="Email" name="registerEmail">
+                <span id="msg2"></span>  
+            </div>
+            </div>
+            <div class="form-group row">
+              <label for="registerPass" class="col-sm-3 col-form-label">Password</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" id="registerPass" placeholder="Password" name="registerPass">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="registerPass2" class="col-sm-3 col-form-label">Repeat</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" id="registerPass2" placeholder="Repeat Password" name="registerPass2">
+                <span id="msg"></span><br>
+                <span id="capsWarning"></span>
+              </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">Agree our Terms & Privacy</div>
+                <div class="col-sm-5">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agreePolicy">
+                    <label class="form-check-label" for="agreePolicy">
+                      Agree
+                    </label>
+                  </div>
+                </div>
+              </div>
+            
+            <button type="submit" class="btn btn-primary" id="submit-register">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

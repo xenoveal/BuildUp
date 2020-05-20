@@ -24,106 +24,16 @@
                         <div class="right col-lg-4">
                             <a href="{{ url_for('index') }}">Help</a>
                             {% if login %}
-                            <button class="signup"><a href="{{ url_for('logout') }}" style="color: white;">Logout</a></button>
+                            <a href="{{ url_for('index') }}">Hello, {{ name }}</a>
+                            <a href="{{ url_for('logout') }}"><button class="signup">Logout</button></a>
                             {% else %}
-                            <button class="signin" data-toggle="modal" data-target="#signin">
-                                Sign In
-                            </button>
-                            <button class="signup" data-toggle="modal" data-target="#signup">
-                                Sign Up
-                            </button>
+                            <a href="{{ url_for('login') }}"><button class="signin">Sign In</button></a>
+                            <a href="{{ url_for('register') }}"><button class="signup">Sign Up</button></a>
                             {% endif %}
                         </div>
                     </div>
                 </div>
-                  
-                  <!-- Sign In Modal -->
-                  <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <form action="{{ url_for('login') }}" method="POST">
-                            <div class="modal-body">
-                                <div class="form-group row">
-                                  <label for="loginEmail" class="col-sm-2 col-form-label">Email</label>
-                                  <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="loginEmail" placeholder="Email" name="loginEmail">
-                                  </div>
-                                </div>
-                                <div class="form-group row">
-                                  <label for="loginPass" class="col-sm-2 col-form-label">Password</label>
-                                  <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="loginPass" placeholder="Password" name="loginPass">
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" value="Login" class="btn btn-primary">
-                            </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
 
-                  <!-- Sign Up Modal -->
-                  <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <form action="{{ url_for('register') }}" method="POST">
-                            <div class="modal-body">                        
-                                <div class="form-group row">
-                                  <label for="registerEmail" class="col-sm-3 col-form-label">Email</label>
-                                  <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="registerEmail" placeholder="Email" name="registerEmail">
-                                  </div>
-                                </div>
-                                <div class="form-group row">
-                                  <label for="registerPass" class="col-sm-3 col-form-label">Password</label>
-                                  <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="registerPass" placeholder="Password" name="registerPass">
-                                  </div>
-                                </div>
-                                <div class="form-group row">
-                                  <label for="registerPass2" class="col-sm-3 col-form-label">Repeat</label>
-                                  <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="registerPass2" placeholder="Repeat Password" name="registerPass2">
-                                    <span id="msg"></span>
-                                  </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6">Agree our Terms & Privacy</div>
-                                    <div class="col-sm-5">
-                                      <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1" value="1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                          Agree
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                            
-                                </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" value="Register" class="btn btn-primary">
-                            </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-            </nav>
 <!--     
             <nav class="navbar navbar-light small">
                 <a class="navbar-brand" href="#">
