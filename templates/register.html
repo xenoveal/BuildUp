@@ -21,13 +21,15 @@
               <label for="registerPass" class="col-sm-3 col-form-label">Password</label>
               <div class="col-sm-9">
                 <input type="password" class="form-control" id="registerPass" placeholder="Password" name="registerPass">
+                <button type="button" style="color: blue;" onclick="toggle_show('registerPass')">Show</button>
               </div>
             </div>
             <div class="form-group row">
               <label for="registerPass2" class="col-sm-3 col-form-label">Repeat</label>
               <div class="col-sm-9">
                 <input type="password" class="form-control" id="registerPass2" placeholder="Repeat Password" name="registerPass2">
-                <span id="msg"></span><br>
+                <button type="button" style="color: blue;" onclick="toggle_show('registerPass2')">Show</button>
+                <span id="msg"></span>
                 <span id="capsWarning"></span>
               </div>
             </div>

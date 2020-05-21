@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+        <link rel="icon" href="{{ url_for('static',filename='img/favicon.png') }}" type="image/gif" sizes="16x16"> 
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="web_nav">
+                    <div class="row">
+                        <div class="left col-lg-6">
+                            <a href="{{ url_for('index') }}" class="logo">BuildUp!</a>
+                            <a href="{{ url_for('index') }}">Why BuildUp!?</a>
+                            <a href="{{ url_for('index') }}">Blog</a>
+                            <a href="{{ url_for('index') }}">Download</a>
+                            <a href="{{ url_for('index') }}">Pricing</a>
+                        </div>
+                        <div class="col-lg-2"></div>
+                        <div class="right col-lg-4">
+                            <a href="{{ url_for('index') }}">Help</a>
+                            <a href="{{ url_for('profile') }}">Hello, {{ session['data']['First Name'] }}</a>
+                            <a href="{{ url_for('logout') }}"><button class="signup">Logout</button></a>
+                        </div>
+                    </div>
+                </div>
+
+<!--     
+            <nav class="navbar navbar-light small">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ url_for('static',filename='img/logo.jpg') }}" width="70px" height="50px" class="d-inline-block align-top" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                  <ul class="navbar-nav">
+                    <li>
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('blog') }}">Content</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('more') }}">BetaTester</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user') }}">User</a>
+                    </li>     
+                  </ul>
+                </div>  
+              </nav>
+        </header>
+-->  
+        <section>
+            {% block section %}{% endblock %}
+        </section>
+<!--
+        <footer>
+            <div class="row">
+
+                <div class="col-lg-6 col-md-12 col-sm-12 text-center">
+                    <h6>Useful Information</h6>
+                    <ul>
+                        <li><a href="{{ url_for('blog') }}">FAQ</a></li>
+                        <li>|</li>
+                        <li><a href="{{ url_for('more') }}">BetaTester Info</a></li>
+                        <li>|</li>
+                        <li><a href="https://api.whatsapp.com/send?phone=6281297930971&text=&source=&data=">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 text-center">
+                    <h6>Follow Us</h6>
+                    <ul>
+                        <li><img src="{{ url_for('static',filename='img/ig.png') }}" class="ss_img" alt="instagram"><a href="https://www.instagram.com/kopsus_animo/">IG : @kopsus_animo</a></li>
+                        <li> || </li>
+                        <li><img src="{{ url_for('static',filename='img/line.png') }}" class="ss_img" alt="line"><a href="https://line.me/ti/p/~shlfhx">Line : null</a></li>
+                        <li> || </li>
+                        <li><img src="{{ url_for('static',filename='img/fb.png') }}" class="ss_img" alt="instagram"><a href="https://facebook.com">Fb : welovebuildup</a></li>
+                        <br>
+                    </ul>
+                </div>
+
+            </div>
+        </footer>
+-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+    </body>
+</html>

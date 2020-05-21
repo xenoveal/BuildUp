@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block section %}
+<div class="row login-register">
+    <div class="col-lg-6 inner-login-register">
+        <h5>FORGOT PASSWORD</h5>
+        <form action="{{ url_for('register') }}" method="POST" id="register"> 
+            <div class="form-group row">
+                <label for="forgotEmail" class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="text" readonly class="form-control-plaintext" id="forgotEmail" value="email@example.com">
+                </div>
+            </div>        
+            <div class="form-group row">
+              <label for="registerPass" class="col-sm-3 col-form-label">New Password</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" id="registerPass" placeholder="Password" name="registerPass">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="registerPass2" class="col-sm-3 col-form-label">Repeat New Password</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" id="registerPass2" placeholder="Repeat Password" name="registerPass2">
+                <span id="msg"></span>
+                <span id="capsWarning"></span>
+              </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" id="submit-register">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

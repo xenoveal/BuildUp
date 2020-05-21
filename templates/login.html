@@ -14,13 +14,15 @@
             <div class="form-group row">
                 <label for="loginPass" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                <input type="password" class="form-control" id="loginPass" placeholder="Password" name="loginPass">
+                <input type="password" class="form-control" id="loginPass" placeholder="Password" name="loginPass" class="password-fill">
+                <button type="button" style="color: blue;" onclick="toggle_show('loginPass')">Show</button>
                 {% if wrong %}
                 <span style="color: red;">Wrong Username/Password</span>
                 {% endif %}    
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" id="submit-login">Login</button>
+            <span><a href="{{ url_for('forgot_password') }}">forgot password</a></span>
         </form>
     </div>
 </div>

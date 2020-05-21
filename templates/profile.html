@@ -1,0 +1,32 @@
+{% extends "layout-login.html" %}
+
+{% block section %}
+<div class="row login-register">
+    <div class="col-lg-6 inner-login-register">
+        <form action="{{ url_for('login') }}" method="POST">
+            <div class="form-group row">
+                <label for="myEmail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="myEmail" value="{{ data.Email }}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="myEmail" class="col-sm-2 col-form-label">Verified Account</label>
+                <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="myEmail" 
+                {% if data.Verified %}
+                value="Verified User">
+                {% else %}
+                value="Not Verified User">
+                <span><a href="{{ url_for('send_verification') }}">Verify my account</a></span>
+                {% endif %}
+                {% if wrong %}
+                <span style="color: red;">Token Expired Please Click Resend</span>
+                {% endif %} 
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submit-login">Edit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

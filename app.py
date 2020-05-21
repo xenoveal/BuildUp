@@ -1,19 +1,35 @@
 from flask import Flask, session, render_template, request, url_for, redirect, session
 from authlib.integrations.flask_client import OAuth
+from flask_mail import Mail, Message
+
 from models import *
-from hashPassword import *
+from decorator import *
 import time
 from datetime import timedelta
 
 app = Flask(__name__)
+app.secret_key = "xenoveals123"
+app.config['SECURITY_PASSWORD_SALT'] = '051285.X'
+
+
+# Configure mailing
+mail_settings = {
+    "MAIL_SERVER": 'smtp.gmail.com',
+    "MAIL_PORT": 465,
+    "MAIL_USE_TLS": False,
+    "MAIL_USE_SSL": True,
+    "MAIL_USERNAME": 'xenoveals@gmail.com',
+    "MAIL_PASSWORD": '171120.X'
+}
+app.config.update(mail_settings)
+mail = Mail(app)
 
 # Configure session
-app.secret_key = "xenoveals123"
 app.config['SESSION_COOKIE_NAME'] = 'login-session'
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 
 # Set up database
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://fgaelkvcnxhqos:7784fabbd6c0316eb419e127eeb3e50ac6e5808fcc827204fe982cffe88b2a3c@ec2-52-44-55-63.compute-1.amazonaws.com:5432/d7s2do0pifj2qc"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://dahggirwidavmc:6cde25b49347e14e22f1829e94cc779ef49467cb394f9b8fc7e49d2e459ba87b@ec2-34-194-198-176.compute-1.amazonaws.com:5432/d8vh6nk44lq031"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
@@ -31,23 +47,28 @@ google = oauth.register(
     client_kwargs={'scope': 'openid email profile'},
 )
 
+
 @app.route("/")
+@login_notrequired
 def index():
     title = "Home"
-    try:
-        data = session['data']
-        return render_template("index.html", title=title, login=True, name=data['First Name'][0].capitalize()+data['First Name'][1:])
-    except:
-        return render_template("index.html", title=title, login=False)
+    return render_template("index.html", title=title, login=False)
     
-
+@app.route("/user")
+@login_required
+def index_login():
+    title = "Home"
+    return render_template("index.html", title=title, login=True, name=session['data']['First Name'])
+  
 @app.route("/google-login")
+@login_notrequired
 def login_google():
     google = oauth.create_client('google')  # create the google oauth client
     redirect_uri = url_for('authorize', _external=True)
     return google.authorize_redirect(redirect_uri)
 
 @app.route('/authorize')
+@login_notrequired
 def authorize():
     google = oauth.create_client('google')
     token = google.authorize_access_token()
@@ -73,16 +94,18 @@ def authorize():
         session['data'] = {
             'Email': user.username,
             'First Name': user.first_name,
-            'Last Name': user.last_name
+            'Last Name': user.last_name,
+            'Verified': user.verified
         } 
     session.permanent = True  
-    return redirect(url_for('.index'))
+    return redirect(url_for('index_login'))
 
 @app.route("/login", methods=["POST", "GET"])
+@login_notrequired
 def login():
     title = "Login"
     if(request.method=="POST"):
-        username_fill = request.form.get("loginEmail")
+        username_fill = request.form.get("loginEmail").lower()
         password_fill = request.form.get("loginPass")
         user = User.query.filter_by(username=username_fill).first()
         time.sleep(2)
@@ -91,27 +114,26 @@ def login():
                 session['data'] = {
                     'Email': user.username,
                     'First Name' : user.first_name,
-                    'Last Name' : user.last_name
+                    'Last Name' : user.last_name,
+                    'Verified': user.verified
                 }
-                return redirect(url_for('.index'))
-        return redirect(url_for('.login', wrong=True))
+                return redirect(url_for('.index_login'))
+        return redirect(url_for('login', wrong=True))
     else:
-        try:
-            data = session['data']
-            return redirect(url_for('.index'))
-        except:
-            wrong = request.args.get('wrong')
-            return render_template("login.html", title=title, wrong=wrong)
+        wrong = request.args.get('wrong')
+        return render_template("login.html", title=title, wrong=wrong)
 
 @app.route("/register", methods=["POST", "GET"])
+@login_notrequired
 def register():
     title="Register"
     if(request.method=="POST"):
-        username = request.form.get("registerEmail")
+        username = request.form.get("registerEmail").lower()
         password = request.form.get("registerPass")
         password2 = request.form.get("registerPass2")
         if(password==password2):
             first_name = username.split('@')[0]
+            first_name = first_name[0].upper() + first_name[1:]
             new_user = User(username=username, password=hash_password(password), first_name=first_name)
             db.session.add(new_user)
             try:
@@ -119,21 +141,91 @@ def register():
             except:
                 db.session.rollback()
                 return redirect(url_for('.register', wrong=True))
-        return redirect(url_for('.index'))
+        return redirect(url_for('index'))
     else:
-        try:
-            data = session['data']
-            return redirect(url_for('.index'))
-        except:
-            wrong = request.args.get('wrong')
-            return render_template("register.html", title=title, wrong=wrong)
+        wrong = request.args.get('wrong')
+        return render_template("register.html", title=title, wrong=wrong)
 
-@app.route("/l1o1g1o1u1t")
+@app.route("/logout")
+@login_required
 def logout():
     for key in list(session.keys()):
         session.pop(key)
     time.sleep(1)
-    return redirect(url_for('.index'))
+    return redirect(url_for('index'))
+
+@app.route("/login/forgot-password")
+@login_notrequired
+def forgot_password():
+    title = "Forgot Password"
+    return render_template("input-email-forgotpass.html", title=title)
+
+@app.route("/login/forgot-password/<token>")
+@login_notrequired
+def set_new_forgot_password(token):
+    title = "Set New Password"
+    return render_template("forgot-pass.html", title=title)
+
+@app.route("/user/profile")
+@login_required
+def profile():
+    title = "Profile"
+    wrong = request.args.get('wrong')
+    return render_template("profile.html", data=session['data'], wrong=wrong, title=title)
+
+@app.route("/send-mail")
+@login_required
+def send_verification():
+    to_send_email = session['data']['Email']
+    token = generate_confirmation_token(session['data']['Email'], app)
+    db_token = Token(token=token, username=to_send_email)
+    db.session.add(db_token)
+    try:
+        db.session.commit()
+    except:
+        db.session.rollback()
+        return redirect(url_for('error'))
+    link = 'http://localhost:5000/user/profile/verified/'+token
+    msg = Message(subject="Verify User", sender=app.config.get("MAIL_USERNAME"), recipients=[to_send_email])
+    msg.html = render_template('mail.html', username=session['data']['First Name'], link=link)
+    mail.send(msg)
+    return redirect(url_for('profile'))
+
+@app.route("/user/profile/verified/<token>")
+@login_required
+def verify(token):
+    valid = confirm_token(token, app)
+    #check token with db and the username changed is from the db!
+    db_token = Token.query.filter_by(token=token).first()
+    if(valid):
+        verify_user = User.query.filter_by(username=db_token.username).first()
+        if(verify_user is not None):
+            verify_user.verified = True
+            session['data'] = {
+                'Email': verify_user.username,
+                'First Name' : verify_user.first_name,
+                'Last Name' : verify_user.last_name,
+                'Verified': True
+            }
+            db.session.delete(db_token)
+            try:
+                db.session.commit()
+                return redirect(url_for('profile'))
+            except:
+                db.session.rollback()
+        else:
+            return redirect(url_for('error'))
+    if(db_token is not None):
+        db.session.delete(db_token)
+        try:
+            db.session.commit()
+        except:
+            db.session.rollback()
+    return redirect(url_for('profile', wrong=True))
+
+@app.route("/error")
+def error():
+    return render_template('error.html', error=error)
 
 @app.route("/blog")
 def blog():

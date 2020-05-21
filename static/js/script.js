@@ -2,7 +2,7 @@ $('#registerEmail').on('input', function(){
 	var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 	var is_email=re.test($('#registerEmail').val());
 
-	if(($('#registerEmail').val().length > 5) && (is_email)){
+	if(($('#registerEmail').val().length > 7) && (is_email)){
 		$('#registerEmail').removeClass('is-invalid').addClass('is-valid')
 		$('#msg2').html('');
 	}else{
@@ -13,19 +13,22 @@ $('#registerEmail').on('input', function(){
 
 $('#registerPass').on('input', function(){
 	if(!(($('#registerPass').val().length > 7) && (/\d/.test($('#registerPass').val())))){
-		$('#registerPass').addClass('is-invalid');
+		$('#registerPass').removeClass('is-valid').addClass('is-invalid');
 		$('#msg').html('Password minimum 8 characters with numeric values');
+	}
+	else{
+		$('#msg').html('');
+		$('#registerPass').removeClass('is-invalid').addClass('is-valid')
 	}
 });
 
 $('#registerPass2').on('input', function(){
 	if($('#registerPass').val() != $('#registerPass2').val()){
-		$('#registerPass2').addClass('is-invalid');
+		$('#registerPass2').removeClass('is-valid').addClass('is-invalid');
 		$('#msg').html('Password didn\'t Match!');
 	}else{
 		$('#msg').html('');
-		$('#registerPass').toggleClass('is-invalid is-valid');
-		$('#registerPass2').toggleClass('is-invalid is-valid');
+		$('#registerPass2').removeClass('is-invalid').addClass('is-valid');
 	}
 });
 
@@ -55,3 +58,16 @@ $('#registerPass, #registerPass2').keypress(function(e) {
 		$('#capsWarning').html('');
 	}
 });
+
+function toggle_show(theid){
+	var originalBtn = $('#'+theid);
+	var newBtn = originalBtn.clone();
+	if($('#'+theid).attr('type')==="password"){
+		newBtn.attr("type", "text");
+	}else{
+		newBtn.attr("type", "password")
+	}
+	newBtn.insertBefore(originalBtn);
+	originalBtn.remove();
+	newBtn.attr("id", theid);
+}

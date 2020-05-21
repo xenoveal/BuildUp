@@ -5,8 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static',filename='styles/counter.css') }}">
-        <link rel="icon" href="{{ url_for('static',filename='img/logo-favicon.png') }}" type="image/gif" sizes="16x16"> 
+        <link rel="icon" href="{{ url_for('static',filename='img/favicon.png') }}" type="image/gif" sizes="16x16"> 
         <title>{{ title }}</title>
     </head>
     <body>
@@ -25,7 +24,7 @@
                         <div class="right col-lg-4">
                             <a href="{{ url_for('index') }}">Help</a>
                             {% if login %}
-                            <a href="{{ url_for('index') }}">Hello, {{ name }}</a>
+                            <a href="{{ url_for('profile') }}">Hello, {{ name }}</a>
                             <a href="{{ url_for('logout') }}"><button class="signup">Logout</button></a>
                             {% else %}
                             <a href="{{ url_for('login') }}"><button class="signin">Sign In</button></a>

@@ -20,13 +20,19 @@ class User(db.Model):
     address_1 = db.Column(db.String)
     address_2 = db.Column(db.String)
     joined_date = db.Column(db.DATE, default=datetime.today().strftime('%Y-%m-%d'))
+    verified = db.Column(db.Boolean, default=False, nullable=False)
 
+class Token(db.Model):
+    __tablename__ = "tokens"
+    id = db.Column(db.Integer, primary_key=True)
+    token = db.Column(db.String, nullable=False, unique=True)
+    username = db.Column(db.String, nullable=False, unique=True)
 
 class Status(db.Model):
     __tablename__ = "status"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False, unique=True)
-    time_access = db.Column(db.Integer, default=0)
+    time_access = db.Column(db.Integer, default=-1)
 
 class UserStatus(db.Model):
     __tablename__ = "userstatus"
