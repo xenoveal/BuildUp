@@ -182,12 +182,12 @@ def send_verification():
     token = generate_confirmation_token(session['data']['Email'], app)
     db_token = Token(token=token, username=to_send_email)
     db.session.add(db_token)
+    link = hosting_url+'/user/profile/verified/'+token
+    msg = Message(subject="Verify User", sender=app.config.get("MAIL_USERNAME"), recipients=[to_send_email])
+    msg.html = render_template('mail.html', username=session['data']['First Name'], link=link)
     try:
-        db.session.commit()
-        link = hosting_url+'/user/profile/verified/'+token
-        msg = Message(subject="Verify User", sender=app.config.get("MAIL_USERNAME"), recipients=[to_send_email])
-        msg.html = render_template('mail.html', username=session['data']['First Name'], link=link)
         mail.send(msg)
+        db.session.commit()
     except:
         db.session.rollback()
         return redirect(url_for('error'))
