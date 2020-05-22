@@ -188,11 +188,13 @@ def send_verification():
     msg = Message(subject="Verify User", sender=app.config.get("MAIL_USERNAME"), recipients=[to_send_email])
     msg.html = render_template('mail.html', username=session['data']['First Name'], link=link)
     try:
-        mail.send(msg)
         db.session.commit()
     except:
         db.session.rollback()
         return redirect(url_for('error'))
+
+    with app.app_context():
+        mail.send(msg)
     return redirect(url_for('profile'))
 
 @app.route("/user/profile/verified/<token>")
@@ -231,7 +233,7 @@ def verify(token):
 
 @app.route("/error")
 def error():
-    return render_template('error.html', error=error)
+    return render_template('error.html')
 
 @app.route("/blog")
 def blog():
