@@ -16,9 +16,9 @@ hosting_url = 'https://buildup-id.herokuapp.com'
 # Configure mailing
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
-    "MAIL_PORT": 465,
-    "MAIL_USE_TLS": False,
-    "MAIL_USE_SSL": True,
+    "MAIL_PORT": 587,
+    "MAIL_USE_TLS": True,
+    "MAIL_USE_SSL": False,
     "MAIL_USERNAME": 'thecbcid@gmail.com',
     "MAIL_PASSWORD": 'cisekeclub'
 }
@@ -190,10 +190,7 @@ def send_verification():
     link = hosting_url+'/user/profile/verified/'+token
     msg = Message(subject="Verify User", sender=app.config.get("MAIL_USERNAME"), recipients=[to_send_email])
     msg.html = render_template('mail.html', username=session['data']['First Name'], link=link)
-    try:
-        mail.send(msg)
-    except:
-        redirect(url_for('error'))
+    mail.send(msg)
     return redirect(url_for('profile'))
 
 @app.route("/user/profile/verified/<token>")
