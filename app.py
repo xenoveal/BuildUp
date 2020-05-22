@@ -11,14 +11,16 @@ app = Flask(__name__)
 app.secret_key = "xenoveals123"
 app.config['SECURITY_PASSWORD_SALT'] = '051285.X'
 
+# https://buildup-id.herokuapp.com
+# http://localhost:5000
 hosting_url = 'https://buildup-id.herokuapp.com'
 
 # Configure mailing
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
-    "MAIL_PORT": 587,
-    "MAIL_USE_TLS": True,
-    "MAIL_USE_SSL": False,
+    "MAIL_PORT": 465,
+    "MAIL_USE_TLS": False,
+    "MAIL_USE_SSL": True,
     "MAIL_USERNAME": 'thecbcid@gmail.com',
     "MAIL_PASSWORD": 'cisekeclub'
 }
