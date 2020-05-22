@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.secret_key = "xenoveals123"
 app.config['SECURITY_PASSWORD_SALT'] = '051285.X'
 
+hosting_url = 'https://buildup-id.herokuapp.com'
 
 # Configure mailing
 mail_settings = {
@@ -18,8 +19,8 @@ mail_settings = {
     "MAIL_PORT": 465,
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
-    "MAIL_USERNAME": 'xenoveals@gmail.com',
-    "MAIL_PASSWORD": '171120.X'
+    "MAIL_USERNAME": 'thecbcid@gmail.com',
+    "MAIL_PASSWORD": 'cisekeclub'
 }
 app.config.update(mail_settings)
 mail = Mail(app)
@@ -29,7 +30,8 @@ app.config['SESSION_COOKIE_NAME'] = 'login-session'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 
 # Set up database
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://dahggirwidavmc:6cde25b49347e14e22f1829e94cc779ef49467cb394f9b8fc7e49d2e459ba87b@ec2-34-194-198-176.compute-1.amazonaws.com:5432/d8vh6nk44lq031"
+# postgres://dahggirwidavmc:6cde25b49347e14e22f1829e94cc779ef49467cb394f9b8fc7e49d2e459ba87b@ec2-34-194-198-176.compute-1.amazonaws.com:5432/d8vh6nk44lq031
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
@@ -81,7 +83,7 @@ def authorize():
     }   
     data = session['data']
     user = User.query.filter_by(username=data['Email']).first()  
-    time.sleep(2) 
+    time.sleep(1) 
     # if user is new, add to database with default PASSWORD = admin1234
     if(user is None):
         new_user = User(username=data['Email'], password=hash_password('admin1234'), first_name=data['First Name'], last_name=data['Last Name'])
@@ -108,7 +110,7 @@ def login():
         username_fill = request.form.get("loginEmail").lower()
         password_fill = request.form.get("loginPass")
         user = User.query.filter_by(username=username_fill).first()
-        time.sleep(2)
+        time.sleep(1)
         if(not(user is None)):
             if(verify_password(user.password, password_fill)): 
                 session['data'] = {
@@ -117,7 +119,7 @@ def login():
                     'Last Name' : user.last_name,
                     'Verified': user.verified
                 }
-                return redirect(url_for('.index_login'))
+                return redirect(url_for('index_login'))
         return redirect(url_for('login', wrong=True))
     else:
         wrong = request.args.get('wrong')
@@ -185,10 +187,13 @@ def send_verification():
     except:
         db.session.rollback()
         return redirect(url_for('error'))
-    link = 'http://localhost:5000/user/profile/verified/'+token
+    link = hosting_url+'/user/profile/verified/'+token
     msg = Message(subject="Verify User", sender=app.config.get("MAIL_USERNAME"), recipients=[to_send_email])
     msg.html = render_template('mail.html', username=session['data']['First Name'], link=link)
-    mail.send(msg)
+    try:
+        mail.send(msg)
+    except:
+        redirect(url_for('error'))
     return redirect(url_for('profile'))
 
 @app.route("/user/profile/verified/<token>")
@@ -197,8 +202,10 @@ def verify(token):
     valid = confirm_token(token, app)
     #check token with db and the username changed is from the db!
     db_token = Token.query.filter_by(token=token).first()
+    time.sleep(1)
     if(valid):
         verify_user = User.query.filter_by(username=db_token.username).first()
+        time.sleep(1)
         if(verify_user is not None):
             verify_user.verified = True
             session['data'] = {
