@@ -17,12 +17,12 @@ hosting_url = 'https://buildup-id.herokuapp.com'
 
 # Configure mailing
 mail_settings = {
-    "MAIL_SERVER": 'smtp.gmail.com',
+    "MAIL_SERVER": 'smtp.mail.yahoo.com',
     "MAIL_PORT": 465,
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
-    "MAIL_USERNAME": 'thecbcid@gmail.com',
-    "MAIL_PASSWORD": 'cisekeclub'
+    "MAIL_USERNAME": 'mail.buildup@yahoo.com',
+    "MAIL_PASSWORD": 'ungvhqprcuhiqbac'
 }
 app.config.update(mail_settings)
 mail = Mail(app)
